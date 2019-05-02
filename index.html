@@ -11,7 +11,7 @@
     <style>
         html {
           box-sizing: border-box;
-          cursor: none !important;
+          /* cursor: none !important; */
         }
         *, *:before, *:after {
           box-sizing: inherit;
@@ -20,7 +20,7 @@
           background: black;
           margin: 0;
           color: black;
-          cursor: none !important;
+          /* cursor: none !important; */
           font-family: 'Ubuntu Mono', monospace;
         }
         h1 {
@@ -45,7 +45,7 @@
           position: relative;
           z-index: 20;
         }
-        span#mouse {
+        /* span#mouse {
           display: block;
           position: fixed;
           z-index: 25;
@@ -63,7 +63,7 @@
           content: "";
           position: relative;
           z-index: 999999;
-        }
+        } */
         section {
           padding: 60px;
         }
@@ -87,7 +87,7 @@
           opacity: .3;
         }
         section.toot {
-          background: bisque;
+          background: black;
           font-size: 2.5em;
           color: hotpink;
           height: 80vh;
@@ -100,13 +100,16 @@
           right: 0;
           z-index: 99999;
           opacity: 0;
+          transition: opacity 5s ease-in-out;
         }
         section.toot.vis {
           opacity: 1;
+          transition: opacity 5s ease-in-out;
         }
         section.toot p {
-          color: black;
+          color: white;
         }
+
         section.toot p.command {
           font-size: .475em;
           background: black;
@@ -132,6 +135,22 @@
           margin-bottom: 80px;
           line-height: 1.325em;
         }
+        section.toot p.explainer:before, section.toot p.explainer:after {
+          content: "";
+          height: 2px;
+          position: absolute;
+          left: 0;
+          right: 0;
+          -webkit-clip-path: polygon(0% 0%, 5%  100%, 10% 0%, 15%  100%, 20% 0%, 25% 100%, 30% 0%, 35%  100%, 40% 0%, 45%  100%, 50% 0%, 55%  100%, 60% 0%, 65%  100%, 70% 0%, 75%  100%, 80% 0%, 85%  100%, 90% 0%, 95%  100%, 100% 0%);
+        }
+        section.toot p.explainer:before {
+          background-color: rgba(0,0,0,1);
+          top: 0;
+        }
+        section.toot p.explainer:after {
+          background-color: rgba(0,0,0,1);
+          bottom: -2px;
+        }
         .images {
           position: fixed;
           top: 0;
@@ -142,12 +161,17 @@
         }
         .gif:first-of-type {position: absolute; top: 30%; right: 0.5%;}
         .gif:nth-of-type(2) {position: absolute; bottom: 0%; left: 2%;}
-        .gif:nth-of-type(3) {position: absolute; top: 40%; left: 5%;}
+        .gif:nth-of-type(3) {position: absolute; top: 40%; left: 1%;}
         .gif:nth-of-type(4) {position: absolute; top: 2%; left: 20%;}
         .gif:nth-of-type(5) {position: absolute; bottom: 10%; right: 2%;}
         .gif:nth-of-type(6) {position: absolute; bottom: 2%; right: 40%;}
-        .gif:nth-of-type(7) {position: absolute; top: 5%; left: 60%;}
-        .gif:nth-of-type(8) {position: absolute; top: 60%; right: 50%;}
+        .gif:nth-of-type(7) {position: absolute; top: 5%; right: -10%;}
+        .gif:nth-of-type(8) {position: absolute; top: 60%; right: 10%;}
+        .gif:nth-of-type(9) {position: absolute; top: 5%; left: 2%;}
+        .gif:nth-of-type(10) {position: absolute; top: 30%; left: -5%;}
+        .gif:nth-of-type(11) {position: absolute; bottom: 20%; right: 10%;}
+        .gif:nth-of-type(12) {position: absolute; bottom: 90%; right: 18%;}
+        .gif:nth-of-type(13) {position: absolute; bottom: 30%; right: 40%;}
     </style>
   </head>
 
@@ -225,10 +249,20 @@
         <img class="gif" src="images/laptop-2.gif" />
         <img class="gif" src="images/folder-2.gif" />
         <img class="gif" src="images/spirit.gif" />
+        <img class="gif" src="images/candle-2.gif" />
+        <img class="gif" src="images/candle-2.gif" />
       </div>
 
       <section id="first-toot" class="toot">
-        <p>First, let's find the deepest darkest file spirit. Open up a terminal window. First navigate to your root directory. Then enter the following commands.</p>
+        <p>
+          How to get in touch with your deepest darkest file.
+          <br><br>
+          Open up a terminal window.
+          <br><br>
+          Navigate to your root directory.
+          <br><br>
+          Then enter the following commands:
+        </p>
         <p class="command">
           mkdir computer-spirit-guide
         </p>
@@ -302,19 +336,16 @@
 
         function showFirstToot() {
           const firstToot = document.getElementById("first-toot");
-          firstToot.classList.add("vis");
+          firstToot.classList.toggle("vis");
 
-          if (firstToot.classList.contains("vis")) {
-            firstToot.classList.remove("vis");
-          }
           console.log("add");
         }
 
         function windowLoaded() {
-          document.addEventListener('mousemove', mouseMoved);
-          const m = document.createElement('span');
-          m.id = "mouse";
-          document.getElementsByTagName('body')[0].append(m);
+          // document.addEventListener('mousemove', mouseMoved);
+          // const m = document.createElement('span');
+          // m.id = "mouse";
+          // document.getElementsByTagName('body')[0].append(m);
         }
 
         function mouseMoved(e) {
