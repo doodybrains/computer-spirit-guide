@@ -42,9 +42,14 @@
           text-shadow: 2px 2px #baffc9;
           position: relative;
           z-index: 20;
+          margin-bottom: 50px;
         }
         section {
           padding: 60px;
+        }
+        .intro em {
+          font-size: 2em;
+          color: white;
         }
         section.flex {
           font-size: 2.5em;
@@ -97,6 +102,9 @@
           color: white;
           margin-bottom: 45px;
         }
+        section.toot p.intro span {
+          font-size: 2.5em;
+        }
         section.toot p.command {
           font-size: 1.5em;
           background: black;
@@ -104,6 +112,12 @@
           color: chartreuse;
           margin-bottom: 15px;
           word-break: break-all;
+        }
+        section.toot p em {
+          color: chartreuse;
+          font-style: normal;
+          font-weight: bold;
+          font-size: inherit;
         }
         section.toot pre {
           background: black;
@@ -154,6 +168,8 @@
         .crystal.three {width: 5%; position: absolute; top: 62%; left: 3%;}
         .crystal.four {width: 8%; position: absolute; top: 81%; left: 39%;}
         .button { cursor: pointer; z-index: 99999999;}
+
+        /* #first-toot { display: block; visibility: visible; opacity: 1;} */
     </style>
   </head>
 
@@ -162,6 +178,8 @@
         <h1>computer spirit guide</h1>
 
         <h3>calling upon the file spirits and folder gods, these terminal commands will guide your computer to the deepest darkest data of its past, present, and future</h3>
+
+        <em>for magical apple computers only</em>
       </section>
       <section class="flex">
         <div>📂 </div><div>📁 </div>
@@ -245,43 +263,46 @@
 
       <section id="first-toot" class="toot">
         <p class="intro">
-          How to get in touch with your deepest darkest file.
+          <span>Get touch with your deepest darkest file.</span>
           <br><br>
-          Open up a terminal window.
+          First open up a brand new terminal window.
           <br><br>
-          Navigate to your root directory.
+          Navigate to your root directory. The easiest way to do this is to type <em>cd</em> and then press enter.
           <br><br>
-          Then enter the following commands:
+          Now you can enter the following commands one at a time:
         </p>
         <p class="command">
           mkdir computer-spirit-guide
         </p>
         <p class="explainer">
-          this command creates a new directory called computer-spirit-guide. this is where all of the new files created throughout this guide will go. you do not need to cd into it yet.
+          this command creates a new folder in your home folder called computer-spirit-guide. this is where all of the new files created throughout this journey will go. do not cd into it just yet...
         </p>
         <p class="command">
           find . -iname "*.txt" -print 2>&1 | grep -v "Permission denied" | sed -e 's/^/./' > ./computer-spirit-guide/files.txt
         </p>
         <p class="explainer">
-          this command searches your entire system finds any files with the extension of txt. the find command is equivalent to the spotlight search in the GUI on a mac. it ignores the files that have "permission denied". finally it places one extra period before the file path. this ensures that the path is absolute ../ rather than relative ./ it prints all of the paths found to a new file called files.txt
+          this command searches your entire system and finds any files with the extension of txt. if you want to get in touch with a different kind of file you can replace <em>.txt</em> with <em>.pdf</em> or any other kind of file. the <em>find </em> command is equivalent use the spotlight search (cmd + space) in the GUI. the command makes sure to ignore the files that return with "permission denied". <br><br>finally it places one extra period before the file path. this ensures that the path is absolute rather than relative. once it has all of the file paths for each file the command copies all of them into to a new file called files.txt<br><br>if you are a file horder it might take a while...
         </p>
         <p class="command">
           cd computer-spirit-guide
         </p>
         <p class="explainer">
-          cd stands for change directory. this command will make sure that all of the future commands you run will happen inside of the computer-spirit-guide folder
+          cd stands for change directory. after running this command your terminal will execute all future commands INSIDE of the computer-spirit-guide directory
         </p>
         <p class="command">
           sed -e 's;[^/]*/; 📁;g;s; |; 📁;g' ./files.txt > file-tree.txt
         </p>
         <p class="explainer">
-          this command does the same as the above. almost. instead of printing the names of the folders in the path it replaces the folder name with the folder emoji. it prints all of the paths found to a new file called file-tree.txt
+          we have already used sed once before. it is a magical command that makes it easy to edit and replace text. this command finds all of the forward slashes and spaces in the files.txt and replaces it with the folder emoji.<br><br>once everything is replaced it copies each of the the new paths with the folder emojis into file-tree.txt
         </p>
         <p class="command">
           touch spirit-guide.sh
         </p>
         <p class="explainer">
-          this command creates a new script file called spirit-guide.sh, open this file up in a text editor like Atom or Sublime. the file should be empty. paste the following code inside of spirit-guide.sh:
+          touch your spirit guide. this command creates a new file called spirit-guide.sh<br><br>
+          .sh stands for shell, we want to use a shell script because we will be writing executable commands inside so that we can eventually just make one call to this file and it will run everything inside of it.<br><br>
+          now you can open this file <em>spirit-guide.sh</em> in a code editor<br><br>
+          you can find the file in your root folder or type <em>open spirit-guide.sh</em> on the command line<br><br>now paste the following code into the file:
         </p>
         <pre>
           while read f; do
@@ -303,7 +324,7 @@
           open ./deepest-file.txt
         </pre>
         <p class="explainer">
-          this code creates two new variables. one called max and one called deepestDarkestFile. the deepestDarkestFile will be equal to the folder that has the most folders in its path. the max variable will be equal to the number of folders in the deepest file's path. while read is a bash command that reads each line of a text file. in this case the file being read is file-tree.txt
+          this code creates two new variables. one called <em>maxPath</em> and one called <em>deepestDarkestFile</em>. the deepestDarkestFile will be equal to the file that has the most folders before it in its path. the maxPath variable will be equal to the amount of folders in the deepest file's path.<br><br> <em>while read</em> is a bash command that reads each line of a given text file. in this case the file being read is file-tree.txt<br><br> finally we use <em>cat</em> to copy the deepestDarkestPath into a file called <em>deepest-file.txt</em> and open thi
         </p>
         <p class="command">
           chmod u+x spirit-guide.sh
@@ -417,6 +438,18 @@
         </p>
         <p class="command">
           touch ./tarot.sh
+        </p>
+        <p class="explainer">
+          the following commands require a library called jq. if you have homebrew you can run the following command:
+        </p>
+        <p class="command">
+          brew install jq
+        </p>
+        <p class="explainer">
+          if you don't have homebrew you can try this linux command:
+        </p>
+        <p class="command">
+          sudo apt-get install jq
         </p>
         <p class="command">
           chmod u+x tarot.sh
