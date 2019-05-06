@@ -7,11 +7,10 @@
     </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Aladin|VT323" rel="stylesheet">
     <style>
         html {
           box-sizing: border-box;
-          /* cursor: none !important; */
         }
         *, *:before, *:after {
           box-sizing: inherit;
@@ -20,8 +19,7 @@
           background: black;
           margin: 0;
           color: black;
-          /* cursor: none !important; */
-          font-family: 'Ubuntu Mono', monospace;
+          font-family: 'VT323', monospace;
         }
         h1 {
           color:#baffc9;
@@ -45,25 +43,6 @@
           position: relative;
           z-index: 20;
         }
-        /* span#mouse {
-          display: block;
-          position: fixed;
-          z-index: 25;
-          z-index: 999999;
-        }
-        span#mouse:after {
-          background-image: url('crystal-3.png');
-          background-size: 120px 148px;
-          background-repeat: no-repeat;
-          display: inline-block;
-          opacity: .92;
-          width: 120px;
-          height: 148px;
-          transform: rotate(-35deg);
-          content: "";
-          position: relative;
-          z-index: 999999;
-        } */
         section {
           padding: 60px;
         }
@@ -100,20 +79,28 @@
           right: 0;
           z-index: 99999;
           opacity: 0;
+          visibility: hidden;
           transition: opacity 5s ease-in-out;
         }
         section.toot.vis {
           opacity: 1;
+          visibility: visible;
           transition: opacity 5s ease-in-out;
         }
         section.toot p {
           color: white;
         }
-
-        section.toot p.command {
-          font-size: .475em;
+        section.toot p.intro {
+          font-size: 1em;
           background: black;
-          padding: 40px;
+          padding: 40px 40px 10px 40px;
+          color: white;
+          margin-bottom: 45px;
+        }
+        section.toot p.command {
+          font-size: 1.5em;
+          background: black;
+          padding: 220px 40px 10px 40px;
           color: chartreuse;
           margin-bottom: 15px;
         }
@@ -124,32 +111,17 @@
           opacity: 1;
           position: relative;
           z-index: 20;
-          color: white;
+          color: chartreuse;
+          font-family: 'VT323', monospace;
         }
         section.toot p.explainer {
-          font-size: .475em;
-          background: white;
-          padding: 40px;
-          color: black;
+          font-size: 1em;
+          padding: 10px 40px 40px 40px;
+          color: white;
           font-style: italic;
           margin-bottom: 80px;
           line-height: 1.325em;
-        }
-        section.toot p.explainer:before, section.toot p.explainer:after {
-          content: "";
-          height: 2px;
-          position: absolute;
-          left: 0;
-          right: 0;
-          -webkit-clip-path: polygon(0% 0%, 5%  100%, 10% 0%, 15%  100%, 20% 0%, 25% 100%, 30% 0%, 35%  100%, 40% 0%, 45%  100%, 50% 0%, 55%  100%, 60% 0%, 65%  100%, 70% 0%, 75%  100%, 80% 0%, 85%  100%, 90% 0%, 95%  100%, 100% 0%);
-        }
-        section.toot p.explainer:before {
-          background-color: rgba(0,0,0,1);
-          top: 0;
-        }
-        section.toot p.explainer:after {
-          background-color: rgba(0,0,0,1);
-          bottom: -2px;
+          font-family: 'Aladin', cursive;
         }
         .images {
           position: fixed;
@@ -159,19 +131,31 @@
           height: 100vh;
           z-index: 999;
         }
-        .gif:first-of-type {position: absolute; top: 30%; right: 0.5%;}
-        .gif:nth-of-type(2) {position: absolute; bottom: 0%; left: 2%;}
-        .gif:nth-of-type(3) {position: absolute; top: 40%; left: 1%;}
-        .gif:nth-of-type(4) {position: absolute; top: 2%; left: 20%;}
-        .gif:nth-of-type(5) {position: absolute; bottom: 10%; right: 2%;}
-        .gif:nth-of-type(6) {position: absolute; bottom: 2%; right: 40%;}
-        .gif:nth-of-type(7) {position: absolute; top: 5%; right: -10%;}
-        .gif:nth-of-type(8) {position: absolute; top: 60%; right: 10%;}
-        .gif:nth-of-type(9) {position: absolute; top: 5%; left: 2%;}
-        .gif:nth-of-type(10) {position: absolute; top: 30%; left: -5%;}
-        .gif:nth-of-type(11) {position: absolute; bottom: 20%; right: 10%;}
-        .gif:nth-of-type(12) {position: absolute; bottom: 90%; right: 18%;}
-        .gif:nth-of-type(13) {position: absolute; bottom: 30%; right: 40%;}
+        .gif.one {position: absolute; top: 30%; right: 2%;}
+        .gif.two {position: absolute; bottom: 0%; left: -12%;}
+        .gif.three {position: absolute; top: 40%; left: 1%; }
+        .gif.four {position: absolute; top: 2%; left: 20%;}
+        .gif.five {position: absolute; bottom: 10%; right: -4%;}
+        .gif.six {position: absolute; bottom: 2%; right: 40%; transform: rotate(60deg);}
+        .gif.seven {position: absolute; top: 5%; right: -14%;}
+        .gif.eight {position: absolute; top: 77%; right: 20%;}
+        .gif.nine {position: absolute; top: 1%; left: 1%; transform: rotate(-10deg);}
+        .gif.ten {position: absolute; top: 20%; left: -5%;}
+        .gif.eleven {position: absolute; bottom: 20%; right: 10%; transform: rotate(-40deg);}
+        .gif.twel {position: absolute; bottom: 90%; right: 18%;}
+        .gif.thirt {position: absolute; bottom: 30%; right: 40%;transform: rotate(20deg);}
+        .gif.fourt {position: absolute; top: 85%; left: 63%; transform: rotate(20deg);}
+        .gif.fift {position: absolute; top: 70%; right: 80%; transform: rotate(60deg);}
+        .gif.sixt {position: absolute; top: 60%; left: 30%; transform: rotate(30deg);}
+        .gif.sevent {position: absolute; top: 4%; right: 18%; transform: rotate(-10deg);}
+        .crystal.one {width: 5%; position: absolute; top: 18%; left: 23%;}
+        .crystal.two {width: 8%; position: absolute; top: 41%; left: 89%;transform: rotate(40deg);}
+        .crystal.three {width: 5%; position: absolute; top: 62%; left: 3%;}
+        .crystal.four {width: 8%; position: absolute; top: 81%; left: 39%;}
+        .button {
+          cursor: pointer;
+          z-index: 99999999;
+        }
     </style>
   </head>
 
@@ -238,23 +222,31 @@
         <div>📁 </div><div>📂 </div>
       </section>
       <div class="images">
-        <img class="gif" id="first-toot-button" src="images/candle-1.gif" />
-        <img class="gif" src="images/folder-2.gif" />
-        <img class="gif" src="images/candle-2.gif" />
-        <img class="gif" src="images/folder-1.gif" />
-        <img class="gif" src="images/folder-2.gif" />
-        <img class="gif" src="images/folder-3.gif" />
-        <img class="gif" src="images/folder-2.gif" />
-        <img class="gif" src="images/laptop-1.gif" />
-        <img class="gif" src="images/laptop-2.gif" />
-        <img class="gif" src="images/folder-2.gif" />
-        <img class="gif" src="images/spirit.gif" />
-        <img class="gif" src="images/candle-2.gif" />
-        <img class="gif" src="images/candle-2.gif" />
+        <img class="gif one button" id="first-toot-button" data-id="first-toot" src="images/candle-1.gif" />
+        <img class="gif two" src="images/folder-2.gif" />
+        <img class="gif three" src="images/candle-2.gif" />
+        <img class="gif four" src="images/folder-1.gif" />
+        <img class="gif five" src="images/folder-2.gif" />
+        <img class="gif six" src="images/folder-3.gif" />
+        <img class="gif seven" src="images/folder-2.gif" />
+        <img class="gif eight" src="images/laptop-1.gif" />
+        <img class="gif nine" src="images/laptop-2.gif" />
+        <img class="gif ten" src="images/folder-2.gif" />
+        <img class="gif eleven" src="images/spirit.gif" />
+        <img class="gif twel" src="images/candle-2.gif" />
+        <img class="gif thirt" src="images/candle-2.gif" />
+        <img class="gif fourt" src="images/laptop-2.gif" />
+        <img class="gif fift" src="images/laptop-2.gif" />
+        <img class="gif sixt" src="images/laptop-1.gif" />
+        <img class="gif sevent" src="images/laptop-1.gif" />
+        <img class="crystal one button" id="second-toot-button" data-id="second-toot" src="images/crystal-3.png" />
+        <img class="crystal two" src="images/crystal-2.png" />
+        <img class="crystal three" src="images/crystal-3.png" />
+        <img class="crystal four" src="images/crystal-2.png" />
       </div>
 
       <section id="first-toot" class="toot">
-        <p>
+        <p class="intro">
           How to get in touch with your deepest darkest file.
           <br><br>
           Open up a terminal window.
@@ -329,29 +321,83 @@
         </p>
       </section>
 
+      <section id="second-toot" class="toot">
+        <p class="intro">
+          How to recieve a message from a file that wants to talk to you.
+          <br><br>
+          Open up a terminal window.
+          <br><br>
+          Navigate to your root directory.
+          <br><br>
+          Then enter the following commands:
+        </p>
+        <p class="command">
+          mkdir file-spirit-messages
+        </p>
+        <p class="explainer">
+          this command creates a new directory called computer-spirit-guide. this is where all of the new files created throughout this guide will go. you do not need to cd into it yet.
+        </p>
+        <p class="command">
+          find . -iname "*.pdf" -print 2>&1 | grep -v "Permission denied" | sed -e 's/^/./' > ./file-spirit-messages/files.txt
+        </p>
+        <p class="explainer">
+          this command searches your entire system finds any files with the extension of txt. the find command is equivalent to the spotlight search in the GUI on a mac. it ignores the files that have "permission denied". finally it places one extra period before the file path. this ensures that the path is absolute ../ rather than relative ./ it prints all of the paths found to a new file called files.txt
+        </p>
+        <p class="command">
+          cd file-spirit-messages
+        </p>
+        <p class="explainer">
+          cd stands for change directory. this command will make sure that all of the future commands you run will happen inside of the computer-spirit-guide folder
+        </p>
+        <p class="command">
+          create a new file and name it is message.sh<br>
+          inside of message.sh paste the following code:
+        </p>
+        <p class="command">
+          sed -e 's;[\.\/@_~-]; ;g;' ./one.txt > ./two.txt<br>
+          shuf ./two.txt --output=./two.txt<br>
+          cat ./two.txt | tr ' ' '\n' > ./three.txt<br>
+          shuf ./three.txt --output=./three.txt<br>
+          cat ./three.txt | tr '\n' ' ' > ./four.txt<br>
+          sed -e 's;pdf; ;g;' ./four.txt > ./message.txt
+        </p>
+        <p class="command">
+          // read message txt file, get random line, print to screen
+        </p>
+      </section>
+
+      <section id="third-toot" class="toot">
+        <p class="command">
+
+        </p>
+        <p class="command">
+
+        </p>
+        <p class="command">
+
+        </p>
+        <p class="command">
+
+        </p>
+        <p class="command">
+
+        </p>
+      </section>
+
       <script type="application/javascript">
-        window.addEventListener('load', windowLoaded);
         const firstTootButton = document.getElementById("first-toot-button");
-        firstTootButton.addEventListener('click', showFirstToot);
+        firstTootButton.addEventListener('click', showToot);
+        const secondTootButton = document.getElementById("second-toot-button");
+        secondTootButton.addEventListener('click', showToot);
 
-        function showFirstToot() {
-          const firstToot = document.getElementById("first-toot");
-          firstToot.classList.toggle("vis");
-
-          console.log("add");
-        }
-
-        function windowLoaded() {
-          // document.addEventListener('mousemove', mouseMoved);
-          // const m = document.createElement('span');
-          // m.id = "mouse";
-          // document.getElementsByTagName('body')[0].append(m);
-        }
-
-        function mouseMoved(e) {
-          const m = document.getElementById("mouse");
-          m.style.top = `${e.clientY}px`;
-          m.style.left =`${e.clientX}px`;
+        function showToot() {
+          const tootEl = document.getElementById(this.getAttribute('data-id'));
+          tootEl.appendChild(this);
+          tootEl.classList.toggle("vis");
+          if (!tootEl.classList.contains("vis")) {
+            console.log(tootEl, this);
+            document.querySelectorAll('.images')[0].appendChild(this);
+          }
         }
       </script>
   </body>
