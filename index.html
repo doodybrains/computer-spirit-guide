@@ -396,20 +396,74 @@
       </section>
 
       <section id="third-toot" class="toot">
-        <p class="command">
-
+        <p class="intro">
+          How to get give your computer a tarot reading.
+          <br><br>
+          Open up a terminal window.
+          <br><br>
+          Navigate to your root directory.
+          <br><br>
+          Then enter the following commands:
         </p>
         <p class="command">
-
+          mkdir computarot
+        </p>
+        <p class="explainer">
+          this command creates a new directory called computarot. this is where all of the new files created throughout this guide will go.
         </p>
         <p class="command">
-
+          cd computarot
         </p>
         <p class="command">
-
+          touch ./tarot.sh
         </p>
         <p class="command">
+          chmod u+x tarot.sh
+        </p>
+        <p class="explainer">
+          open the tarot.sh file in a code editor. paste the following code:
+        </p>
+        <p class="command">
+          #!/bin/bash<br><br>
+          do_reading() {<br>
+            for run in {1..3}<br>
+            do<br>
+              foo=$(curl 'https://raw.githubusercontent.com/dariusk/corpora/master/data/divination/tarot_interpretations.json')<br><br>
 
+              x=`echo $foo | jq --arg random $((0 + RANDOM % 78)) '.["tarot_interpretations"] | .[$random|tonumber].name'`<br><br>
+
+              y=`echo $foo | jq --arg random $((0 + RANDOM % 78)) '.["tarot_interpretations"] | .[$random|tonumber].keywords[0]'`<br><br>
+
+              mkdir "${x//\"}"<br>
+              cd "${x//\"}"<br>
+              open .<br>
+              mkdir "${y//\"}"<br>
+              mdfind "${y//\"}" | head -3 | while IFS= read -r filez; do cp "$filez" "${y//\"}"; done<br>
+              cd "${y//\"}"<br>
+              open .<br>
+              cd ..<br>
+              cd ..<br>
+            done<br>
+          }<br><br>
+
+          cd ..<br><br>
+
+          if [ -d "computarot-reading" ]; then<br>
+            rm -r computarot-reading<br><br>
+
+            mkdir computarot-reading<br><br>
+
+            cd computarot-reading<br><br>
+
+            do_reading<br><br>
+
+          elif [ ! -d "computarot-reading" ]; then<br>
+            mkdir computarot-reading<br><br>
+
+            cd computarot-reading<br><br>
+
+            do_reading<br>
+          fi<br><br>
         </p>
       </section>
 
