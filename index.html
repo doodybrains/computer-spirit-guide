@@ -103,6 +103,7 @@
           padding: 220px 40px 10px 40px;
           color: chartreuse;
           margin-bottom: 15px;
+          word-break: break-all;
         }
         section.toot pre {
           background: black;
@@ -227,7 +228,7 @@
         <img class="gif six" src="images/folder-3.gif" />
         <img class="gif seven" src="images/folder-2.gif" />
         <img class="gif eight" src="images/laptop-1.gif" />
-        <img class="gif nine" src="images/laptop-2.gif" />
+        <img class="gif nine button" id="third-toot-button" data-id="third-toot" src="images/laptop-2.gif" />
         <img class="gif ten" src="images/folder-2.gif" />
         <img class="gif eleven" src="images/spirit.gif" />
         <img class="gif twel" src="images/candle-2.gif" />
@@ -472,6 +473,8 @@
         firstTootButton.addEventListener('click', showToot);
         const secondTootButton = document.getElementById("second-toot-button");
         secondTootButton.addEventListener('click', showToot);
+        const thirdTootButton = document.getElementById("third-toot-button");
+        thirdTootButton.addEventListener('click', showToot);
 
         function showToot() {
           const tootEl = document.getElementById(this.getAttribute('data-id'));
