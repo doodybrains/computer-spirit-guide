@@ -354,7 +354,7 @@
         </p>
         <p class="command">
           sed -e 's;[\.\/@_~-]; ;g;' ./files.txt > ./two.txt<br>
-          cat ./two.txt | perl -MList::Util=shuffle -e 'print shuffle(<STDIN>);' > ./rand.txt
+          cat ./two.txt | perl -MList::Util=shuffle -e 'print shuffle(<STDIN>);' > ./rand.txt<br>
           cat ./rand.txt | tr ' ' '\n' > ./three.txt<br>
           cat ./three.txt | perl -MList::Util=shuffle -e 'print shuffle(<STDIN>);' > ./four.txt
           cat ./four.txt | tr '\n' ' ' > ./five.txt<br>
