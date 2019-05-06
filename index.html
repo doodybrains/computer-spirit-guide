@@ -280,12 +280,12 @@
           touch spirit-guide.sh
         </p>
         <p class="explainer">
-          this command creates a new script file called spirit-guide.sh, open this file up in a text editor like Atom or Sublime. the file should be empty. paste the following code inside:
+          this command creates a new script file called spirit-guide.sh, open this file up in a text editor like Atom or Sublime. the file should be empty. paste the following code inside of spirit-guide.sh:
         </p>
         <pre>
           while read f; do
             echo -n "$f "
-          done <./tree.txt
+          done <./file-tree.txt
 
           maxPath=0
           deepestDarkestPath=0
@@ -347,16 +347,24 @@
           cd stands for change directory. this command will make sure that all of the future commands you run will happen inside of the computer-spirit-guide folder
         </p>
         <p class="command">
-          create a new file and name it is message.sh<br>
+          touch message.sh
+        </p>
+        <p class="explainer">
           inside of message.sh paste the following code:
         </p>
         <p class="command">
-          sed -e 's;[\.\/@_~-]; ;g;' ./one.txt > ./two.txt<br>
-          shuf ./two.txt --output=./two.txt<br>
-          cat ./two.txt | tr ' ' '\n' > ./three.txt<br>
-          shuf ./three.txt --output=./three.txt<br>
-          cat ./three.txt | tr '\n' ' ' > ./four.txt<br>
+          sed -e 's;[\.\/@_~-]; ;g;' ./files.txt > ./two.txt<br>
+          cat ./two.txt | perl -MList::Util=shiffle -e 'print shuffle(<STDIN>);' > ./rand.txt
+          cat ./rand.txt | tr ' ' '\n' > ./three.txt<br>
+          cat ./three.txt | perl -MList::Util=shiffle -e 'print shuffle(<STDIN>);' > ./four.txt
+          cat ./four.txt | tr '\n' ' ' > ./five.txt<br>
           sed -e 's;pdf; ;g;' ./four.txt > ./message.txt
+        </p>
+        <p class="command">
+          chmod u+x message.sh
+        </p>
+        <p class="explainer">
+          this command gives your computer permission to execute the commands of the file
         </p>
         <p class="command">
           // read message txt file, get random line, print to screen
