@@ -358,7 +358,28 @@
           cat ./rand.txt | tr ' ' '\n' > ./three.txt<br>
           cat ./three.txt | perl -MList::Util=shuffle -e 'print shuffle(&#60;STDIN&#62;);' > ./four.txt
           cat ./four.txt | tr '\n' ' ' > ./five.txt<br>
-          sed -e 's;pdf; ;g;' ./four.txt > ./message.txt
+          sed -e 's;pdf; ;g;' ./four.txt > ./message.txt<br><br>
+
+          while read line; do<br>
+          	n=$((n+1))<br><br>
+
+          	if [[ $n -gt 1 && (30 -gt $n)]]<br>
+          	then<br>
+          		mess+=" ${line}"<br>
+          	fi<br>
+          done < ./message.txt<br><br>
+
+          echo " "<br>
+          `echo $mess > random-message.txt`<br>
+
+          echo " "<br>
+          echo " "<br>
+          echo " "<br><br>
+
+          while IFS= read -r -n1 char; do<br>
+          	echo -n "$char"<br>
+            sleep .1;<br>
+          done < ./random-message.txt<br>
         </p>
         <p class="command">
           chmod u+x message.sh
