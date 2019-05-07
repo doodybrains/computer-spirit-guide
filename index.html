@@ -281,7 +281,7 @@
           this command creates a new folder in your home folder called computer-spirit-guide. this is where all of the new files created throughout this journey will go. do not cd into it just yet...
         </p>
         <p class="command">
-          find . -iname "*.txt" -print 2>&1 | grep -v "Permission denied" | sed -e 's/^/./' > ./computer-spirit-guide/files.txt
+          find . -iname "*.txt" -print 2>&1 | grep -v "Permission denied" | sed -e 's/^/./' -e 's/ /\\ /g' > ./computer-spirit-guide/files.txt
         </p>
         <p class="explainer">
           this command searches your entire system and finds any files with the extension of txt. if you want to get in touch with a different kind of file you can replace <em>.txt</em> with <em>.pdf</em> or any other kind of file. the <em>find </em> command is equivalent use the spotlight search (cmd + space) in the GUI. the command makes sure to ignore the files that return with "permission denied". <br><br>finally it places one extra period before the file path. this ensures that the path is absolute rather than relative. once it has all of the file paths for each file the command copies all of them into to a new file called files.txt<br><br>if you are a programmer it might take a while...
@@ -309,21 +309,21 @@
         </p>
         <p class="command file">
           #!/bin/bash<br><br>
-          while read f; do
-            echo -n "$f "
-          done <./file-tree.txt
+          while read f; do<br>
+            echo -n "$f "<br>
+          done <./file-tree.txt<br><br>
 
-          maxPath=0
-          deepestDarkestPath=0
-          while read path; do
-            countPath=$(echo ${path} | grep -o '/' | wc -l)
-            if (( $countPath > $maxPath )); then
-              maxPath=$countPath;
-              deepestDarkestPath=$path;
-            fi;
-          done <./files.txt
+          maxPath=0<br>
+          deepestDarkestPath=0<br>
+          while read path; do<br>
+            countPath=$(echo ${path} | grep -o '/' | wc -l)<br>
+            if (( $countPath > $maxPath )); then<br>
+              maxPath=$countPath;<br>
+              deepestDarkestPath=$path;<br>
+            fi;<br>
+          done <./files.txt<br><br>
 
-          cat $deepestDarkestPath > ./deepest-file.txt
+          cat $deepestDarkestPath > ./deepest-file.txt<br><br>
 
           open ./deepest-file.txt
         </p>
@@ -458,6 +458,12 @@
         </p>
         <p class="command">
           sudo apt-get install jq
+        </p>
+        <p class="explainer">
+          if you want to install homebrew to run JQ you can enter the following command:
+        </p>
+        <p class="command">
+          /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
         </p>
         <p class="explainer">
           don't forget give the tarot.sh file the right permissions:
