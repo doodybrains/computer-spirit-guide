@@ -361,7 +361,7 @@
           this command creates a new directory called file-spirit-messages. this is where all of the new files created throughout this guide will go. you do not need to cd into it yet.
         </p>
         <p class="command">
-          find . -iname "*.pdf" -print 2>&1 | grep -v "Permission denied" | sed -e 's/^/./' > ./file-spirit-messages/files.txt
+          find . -iname "*.pdf" -print 2>&1 | grep -v "Permission denied" | sed -e 's/^/./' -e 's/ /\\ /g' > ./file-spirit-messages/files.txt
         </p>
         <p class="explainer">
           this command searches your entire system and finds any files with the extension of txt. if you want to get in touch with a different kind of file you can replace <em>.pdf</em> with <em>.rtf</em> or any other kind of file. the <em>find </em> command is equivalent use the spotlight search (cmd + space) in the GUI. the command makes sure to ignore the files that return with "permission denied". <br><br>finally it places one extra period before the file path. this ensures that the path is absolute rather than relative. once it has all of the file paths for each file the command copies all of them into to a new file called files.txt<br><br>if you read a lot it might take a while...
